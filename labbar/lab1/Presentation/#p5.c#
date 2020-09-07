@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     int number = atoi(argv[1]);
 
     for (int testA = 2; testA < number; testA++){
-            
+            e
         for (int testB = 2; testB < number; testB++){
             
             if (testA * testB == number){ 

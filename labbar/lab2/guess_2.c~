@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include "utils.h"
+
+#include <stdlib.h>
+#include <time.h>
+
+char *ask_question_string(char *question, char *buf, int buf_siz);
+
+
+int main(void){
+  int buf_siz_name = 20;
+  char buf_name[buf_siz_name];
+  
+  int guess = 20;
+  int guess_count = 0;
+  int guess_count_max = 15;
+  
+  seed_random(); // Seed random number
+  int num = random_number(100); // Get 
+  
+  ask_question_string("Skriv ditt namn: ", buf_name, buf_siz_name);
+  printf("Du %s, jag tänker på ett tal.\n", buf_name);
+
+  do{
+    guess = ask_question_int("gissa vilket: ");
+    guess_count++;
+
+    if (guess > num){
+      puts("För stort!\n");
+    }else if (guess < num){
+      puts("För litet!\n");
+    }
+
+    printf("Guess %d of %d\n", guess_count, guess_count_max);
+    
+    if (guess_count >= guess_count_max){
+      printf("Slut på gissningar, jag tänkte på %d", num);
+      return 0;
+    }    
+  }while (guess != num);
+
+  printf("Bingo! Det tog %s %d många gissningar\n", buf_name, guess_count);
+  printf("att komma fram till %d.\n", num);
+
+  return 0;
+
+}
+
+int print_success(char *name, int *guesses, int *answer){
+  printf("Bingo! Det tog %s %d många gissningar\n", name, guesses);
+  printf("att komma fram till %d.\n", answer);
+
+
+  return 0;
+}

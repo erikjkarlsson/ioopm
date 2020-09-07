@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+
+typedef int(*int_fold_func)(int, int);
+int foldl_int_int(int numbers[], int numbers_siz, int_fold_func f);
+int add(int a, int b);
+
+
+/// Main:
+int main(void){
+
+
+
+
+  return 0;
+}
+
+
+
+
+/// Functions:
+
+
+int foldl_int_int(int numbers[], int numbers_siz, int_fold_func f){
+  int result = 0;
+
+  for (int i = 0; i < numbers_siz; ++i){
+    result = f(result, numbers[i]);
+  }
+  return result;
+}
+
+int add(int a, int b){
+  return a + b;
+}

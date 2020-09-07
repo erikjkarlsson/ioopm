@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gcc -Wall -std=c11 guess.c utils.c -o g

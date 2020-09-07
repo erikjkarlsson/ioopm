@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#colorgcc -std=c11 -Wall $1 -o $2
+gcc -std=gnu11 -Wall $1 -o $2

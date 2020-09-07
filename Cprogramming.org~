@@ -1,0 +1,15 @@
+#+TITLE: C programming
+
+#+BEGIN_SRC c
+int main(int argc, char *argv[])
+{
+return 0;
+}
+#+END_SRC
+
+#+BEGIN_SRC
+arg[0] function name
+arg[1] argument 1
+arg[2] argument 2
+
+#+END_SRC

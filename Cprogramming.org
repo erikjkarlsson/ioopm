@@ -1,0 +1,139 @@
+#+TITLE: C programming
+
+http://wrigstad.com/ioopm/assignments/
+
+#+BEGIN_SRC c
+int main(int argc, char *argv[])
+{
+return 0;
+}
+#+END_SRC
+
+#+BEGIN_SRC
+arg[0] function name
+arg[1] argument 1
+arg[2] argument 2
+#+END_SRC
+
+#+BEGIN_SRC
+arg[0] function name
+arg[1] argument 1
+arg[2] argument 2
+#+END_SRC
+
+
+atoi() [string -> number]
+
+
+* Example prime
+#+BEGIN_SRC c
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+
+
+int main(int argc, char *argv[])
+{
+
+    int number = atoi(argv[1]);
+
+    for (int testA = 2; testA < number; testA++){
+            
+        for (int testB = 2; testB < number; testB++){
+            
+            if (testA * testB == number){ 
+                // The integer n is prime if there exists two integers a and b 
+                // such that a * b = n
+                printf("%d is not a prime number!\n\n", number);
+                return 0;
+            }
+        }   
+    }
+    
+    printf("%d is a prime number!\n\n", number);
+    
+    return 0;
+}
+#+END_SRC
+* Lab 2
+"&" returnerar adressen till &var (var) i minnet.
+=scanf("%d", &result)= i detta fall läser det ett heltal och sparar det k result
+
+kompilera med -c flaggan på =utils.c=
+
+#+BEGIN_SRC c
+int ask_question_int(char *question)
+{
+
+  int result = -1;
+
+  do
+  {
+    printf("%s\n", question);
+  }
+  while (scanf("%d", &result) != 1);
+
+  return result;
+}
+#+END_SRC
+
+
+
+#+BEGIN_SRC c
+int c;
+do
+{
+  c = getchar();
+}
+while (c != '\n');
+#+END_SRC
+Tomma tangentbords buffer
+
+
+#+BEGIN_SRC c
+int ask_question_int(char *question)
+{
+
+  int result = 0;
+  int conversions = 0;
+  do
+    {
+      printf("%s\n", question);
+      conversions = scanf("%d", &result);
+      int c;
+      do
+        {
+          c = getchar();
+        }
+      while (c != '\n');
+      putchar('\n');
+    }
+  while (conversions < 1);
+  return result;
+}
+#+END_SRC
+Slutgiltig funktion för att lösa tangentbordsinput
+Tar karaktärer en och en från input stream och slutar läsa när det blir en newline.
+
+#+BEGIN_SRC c
+#+END_SRC
+
+#+BEGIN_SRC c
+#+END_SRC
+
+#+BEGIN_SRC c
+#+END_SRC
+
+#+BEGIN_SRC c
+#+END_SRC
+
+#+BEGIN_SRC c
+#+END_SRC
+
+#+BEGIN_SRC c
+#+END_SRC
+
+#+BEGIN_SRC c
+#+END_SRC

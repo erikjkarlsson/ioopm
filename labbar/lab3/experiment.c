@@ -1,6 +1,3 @@
-#ifndef __UTILS_H__
-#define __UTILS_H__
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <ctype.h>
@@ -9,22 +6,31 @@
 #include <stdlib.h>
 #include <time.h>
 
+typedef union { 
+  int   int_value;
+  float float_value;
+  char *string_value;
+} answer_t;
 
-int seed_random(void);
-int random_number(int range);
-int read_string(char *buf, int buf_siz);
+typedef  bool (*check_func) (char*);
+typedef  answer_t (*convert_func) (char*);
+extern   char *strdup(const char *);
+answer_t ask_question(char *question, check_func check, convert_func convert);
+answer_t make_float(char *str);
 
 bool not_empty(char *str);
 bool is_number(char *str);
+int  read_string(char *buf, int buf_siz);
+int  ask_question_int(char *question);
 
-answer_t make_float(char *str);
-answer_t ask_question(char *question, check_func check, convert_func convert);
+int main(void){
+  answer_t ans;
+  
+  ans = ask_question("I WILL ADD ONE TO THIS NUMBER:", (check_func) is_number, (convert_func) atoi);
+  printf("ANSWER IS...%d\n\n", 1 + ans.int_value);
 
-char  *ask_question_string(char *question);
-double ask_question_float(char *question);
-int    ask_question_int_safe(char *question, int buffer_size);
-int    ask_question_int(char *question);
-
+  return 0; 
+}
 
 
 /// String and Chars:
@@ -88,23 +94,6 @@ bool is_number(char *str){
   return true;
 }
 
-int ask_question_int_safe(char *question, int buffer_size){
-  // Prompt user for input using provided question
-  // Save input in a char array of size, buffer_size
-  // check if the provided string can be converted into
-  // a number, if it can, convert and return
-  // if it can't return -1
-  
-  int result = -1;
-  char input[buffer_size];
-  
-  read_string(input, buffer_size);
-  
-  if (is_number(input)) result = atoi(input);
-			  
-  return result;
-}
-
 int ask_question_int(char *question){
   answer_t answer = ask_question(question, is_number, (convert_func) atoi);
   return answer.int_value;
@@ -136,19 +125,3 @@ answer_t ask_question(char *question, check_func check, convert_func convert){
 
   return convert(buffer);
 }
-
-int seed_random(void){
-  // Seed Randomness
-  time_t t;
-  srandom((unsigned)time(&t));
-  return 0;
-}
-
-int random_number(int range){
-  // Return a random number within
-  // Scope: (0 -> range)
-  return (rand() % range);  
-}
-		  
-
-#endif
