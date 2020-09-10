@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gcc -Wall -std=c11 db.c utils.c -o db
